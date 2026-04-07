@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Smart City Water Grid Management System
 
 A full-stack web application designed for centralizing and monitoring a city's water infrastructure. This project was built utilizing Node.js, Express, a SQLite database, and Vanilla HTML/CSS/JS for the frontend.
@@ -72,3 +73,6 @@ If you leave it blank, the app falls back to Leaflet.
 ## Deployment
 
 Because this project utilizes a file-based SQLite database and standard Node.js server, it can be easily deployed to services like Render, Heroku, or Fly.io.
+=======
+# Water-Resource-Management
+>>>>>>> 32a2f38d158b2aae5d9f10fcb2d24529b561da1b
