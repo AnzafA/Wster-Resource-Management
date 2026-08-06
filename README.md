@@ -1,78 +1,242 @@
-<<<<<<< HEAD
-# Smart City Water Grid Management System
+# 💧 Smart City Water Grid Management System
 
-A full-stack web application designed for centralizing and monitoring a city's water infrastructure. This project was built utilizing Node.js, Express, a SQLite database, and Vanilla HTML/CSS/JS for the frontend.
+A full-stack web application for monitoring and managing a city's water distribution infrastructure in real time. The platform centralizes reservoir monitoring, water consumption analytics, quality assessment, infrastructure alerts, and predictive insights into a single interactive dashboard.
 
-## Features Let's you
+Built with **Node.js**, **Express.js**, **SQLite**, and **Vanilla JavaScript**, the system provides city administrators with real-time visibility into water resources, enabling faster decision-making and more efficient resource management.
 
-*   **Real-time Dashboard:** View aggregated capacities and city-wide statuses.
-*   **Zone Tracking:** Monitor the daily water consumption across different city zones using interactive `Chart.js` bar charts.
-*   **Reservoir Monitoring:** Check the exact ML (Megaliter) status and capacity percentages of all integrated water reservoirs.
-*   **Alert System:** A centralized alert hub that logs and categorizes infrastructure warnings (e.g., Leaks, Maintenance, Capacity Drops).
-*   **Live Monitor (SSE):** Real-time UI updates from IoT readings using Server-Sent Events.
-*   **Water Quality Monitoring:** pH / turbidity / dissolved oxygen snapshots + trend modal.
-*   **Forecasting & Anomalies:** Basic demand/depletion forecasting + anomaly detection endpoint.
-*   **GIS + Heatmaps:** Google Maps (if API key set) with reservoir markers + scarcity heatmap (Leaflet fallback without key).
-*   **Reports:** Export Alerts / Usage / Quality to Excel (`.xlsx`).
-*   **SMS Alerts (Twilio):** High severity alerts can notify configured phone targets.
-*   **Premium Aesthetic:** Features a fully responsive, modern dark-mode UI with glassmorphism effects and tailored micro-animations.
+---
 
-## Technology Stack
+## 🚀 Features
 
-*   **Frontend**: HTML5, Vanilla CSS (Grid/Flexbox, CSS Variables, Glassmorphism), Vanilla JavaScript, Chart.js.
-*   **Backend**: Node.js, Express.js, CORS, SSE.
-*   **Database**: SQLite (using the `sqlite3` node package with a pre-configured seeding script).
-*   **Integrations (optional)**: Twilio (SMS), Google Maps JavaScript API, Gemini API.
-*   **Exports**: Excel (`exceljs`), PDF (`html2canvas` + `jsPDF`).
+### 📊 Real-Time Dashboard
+- Monitor city-wide water capacity and overall infrastructure status.
+- View live updates from connected IoT devices using **Server-Sent Events (SSE)**.
 
-## Running the Project Locally
+### 🌍 Zone-Based Water Analytics
+- Track daily water consumption across multiple city zones.
+- Interactive visualizations powered by **Chart.js**.
 
-### 1. Setup Backend
+### 🏞 Reservoir Monitoring
+- View current water levels in megaliters (ML).
+- Monitor reservoir capacity percentages in real time.
 
-Navigate to the backend directory, install dependencies, and start the server:
+### ⚠ Alert Management
+- Centralized dashboard for infrastructure alerts.
+- Categorized alerts including:
+  - Water leaks
+  - Scheduled maintenance
+  - Capacity drops
+  - Critical system notifications
+
+### 💧 Water Quality Monitoring
+- Monitor key water quality parameters:
+  - pH
+  - Turbidity
+  - Dissolved Oxygen
+- View historical trends and snapshots.
+
+### 📈 Forecasting & Anomaly Detection
+- Predict future water demand.
+- Estimate reservoir depletion.
+- Detect abnormal consumption patterns and infrastructure anomalies.
+
+### 🗺 GIS Visualization
+- Interactive reservoir mapping using **Google Maps API**.
+- Automatic **Leaflet** fallback when a Google Maps API key is unavailable.
+- Water scarcity heatmap visualization.
+
+### 📑 Reporting
+Generate downloadable reports including:
+- Water Usage
+- Infrastructure Alerts
+- Water Quality
+
+Reports are available in **Excel (.xlsx)** format.
+
+### 📱 SMS Notifications
+Send high-priority infrastructure alerts using **Twilio SMS** integration.
+
+### 🎨 Modern User Interface
+- Fully responsive design
+- Dark mode
+- Glassmorphism-inspired UI
+- Smooth animations and micro-interactions
+- Mobile-friendly layout
+
+---
+
+# 🛠 Technology Stack
+
+## Frontend
+- HTML5
+- CSS3
+- Vanilla JavaScript (ES6+)
+- Chart.js
+
+## Backend
+- Node.js
+- Express.js
+- Server-Sent Events (SSE)
+- CORS
+
+## Database
+- SQLite
+
+## APIs & Integrations
+- Google Maps JavaScript API
+- Twilio SMS API
+- Gemini API *(Optional)*
+
+## Report Generation
+- ExcelJS
+- jsPDF
+- html2canvas
+
+---
+
+# ⚙ Installation
+
+## 1. Clone the Repository
+
+```bash
+git clone <repository-url>
+cd Water-Resource-Management
+```
+
+---
+
+## 2. Backend Setup
+
+Navigate to the backend folder:
 
 ```bash
 cd backend
+```
+
+Install dependencies:
+
+```bash
 npm install
+```
+
+Start the server:
+
+```bash
 npm start
 ```
-*Note: Starting the server for the first time will automatically instantiate the SQLite database (`database.sqlite`) and seed it with realistic mock data.* The server will run on `http://localhost:3000`.
 
-#### Backend environment variables
-Copy `backend/.env.example` to `backend/.env` and fill what you need:
-- **Required for production**: `JWT_SECRET`
-- **IoT ingestion key**: `IOT_INGEST_KEY` (devices must send header `x-iot-key`)
-- **Twilio SMS (optional)**: `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_FROM_NUMBER`
-- **Gemini (optional)**: `GEMINI_API_KEY`
+On first launch, the application automatically:
 
-### 2. Setup Frontend
+- Creates the SQLite database
+- Seeds it with realistic sample data
 
-You simply need to serve the `frontend` directory using any static web server. If you have Node.js installed, you can use `serve`:
+The backend will run at:
+
+```
+http://localhost:3000
+```
+
+---
+
+## Environment Variables
+
+Create a `.env` file inside the `backend` directory.
+
+```env
+JWT_SECRET=your_secret
+
+IOT_INGEST_KEY=your_key
+
+TWILIO_ACCOUNT_SID=
+TWILIO_AUTH_TOKEN=
+TWILIO_FROM_NUMBER=
+
+GEMINI_API_KEY=
+```
+
+### Required
+- JWT_SECRET
+
+### Optional
+- Twilio credentials
+- Gemini API key
+
+---
+
+## 3. Frontend Setup
+
+Navigate to the frontend directory:
 
 ```bash
 cd frontend
+```
+
+Serve the application using any static server.
+
+Example:
+
+```bash
 npx serve
 ```
-Open the provided local URL in your browser to view the application!
 
-#### Google Maps setup (optional)
-Edit `frontend/index.html` and set:
-- `window.HYDROGRID_CONFIG.GOOGLE_MAPS_API_KEY = 'YOUR_KEY'`
+Open the generated local URL in your browser.
 
-If you leave it blank, the app falls back to Leaflet.
+---
 
-## Useful API endpoints
-- **SSE stream**: `GET /api/stream`
-- **IoT ingest**: `POST /api/iot/reading` (header `x-iot-key: <IOT_INGEST_KEY>`)
-- **Usage analytics**: `GET /api/usage?range=daily|weekly|monthly`
-- **Quality**: `GET /api/quality/latest`, `GET /api/quality/history?reservoirId=1`
-- **Forecasts**: `GET /api/forecast/rainfall`, `GET /api/forecast/demand`, `GET /api/forecast/reservoir-depletion`
-- **Anomalies**: `GET /api/anomalies`
-- **Excel reports**: `GET /api/reports/alerts.xlsx`, `GET /api/reports/usage.xlsx`, `GET /api/reports/quality.xlsx`
+## Google Maps Configuration (Optional)
 
-## Deployment
+Inside `frontend/index.html`:
 
-Because this project utilizes a file-based SQLite database and standard Node.js server, it can be easily deployed to services like Render, Heroku, or Fly.io.
-=======
-# Water-Resource-Management
->>>>>>> 32a2f38d158b2aae5d9f10fcb2d24529b561da1b
+```javascript
+window.HYDROGRID_CONFIG.GOOGLE_MAPS_API_KEY = "YOUR_API_KEY";
+```
+
+If no API key is provided, the application automatically falls back to **Leaflet** for map visualization.
+
+---
+
+# 📡 API Endpoints
+
+| Endpoint | Description |
+|-----------|-------------|
+| `GET /api/stream` | Live SSE stream |
+| `POST /api/iot/reading` | IoT data ingestion |
+| `GET /api/usage` | Water usage analytics |
+| `GET /api/quality/latest` | Latest water quality metrics |
+| `GET /api/quality/history` | Historical quality data |
+| `GET /api/forecast/rainfall` | Rainfall prediction |
+| `GET /api/forecast/demand` | Water demand forecasting |
+| `GET /api/forecast/reservoir-depletion` | Reservoir depletion prediction |
+| `GET /api/anomalies` | Infrastructure anomaly detection |
+| `GET /api/reports/*.xlsx` | Export reports |
+
+---
+
+# 🚀 Deployment
+
+The project can be deployed on platforms such as:
+
+- Render
+- Fly.io
+- Railway
+- Heroku
+
+Since the backend uses a lightweight SQLite database, deployment requires minimal configuration.
+
+---
+
+# 📌 Future Enhancements
+
+- AI-powered demand forecasting
+- Predictive leak detection
+- Mobile application
+- Multi-city support
+- User authentication & role management
+- Cloud database integration (PostgreSQL/MySQL)
+- Docker containerization
+
+---
+
+# 👥 Team
+
+Developed as a collaborative software engineering project by a team of three members.
